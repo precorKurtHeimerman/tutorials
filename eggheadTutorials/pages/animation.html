@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animations</title>
+
+    <script src="../js/animation.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/animation.css">
+    <script type="application/javascript">
+        let timer = 0;
+        let fillValue = 10;
+        function increaseProgressBar() {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            fillValue++;
+            if(fillValue < 200) {
+                ctx.fillRect(0,0,fillValue,100);
+            }
+        }
+        function drawProgress() {
+            increaseProgressBar();
+            timer = requestAnimationFrame(drawProgress);
+            console.log('created timer for drawProgress', timer);
+        }
+        function reset() {
+            console.log('reset ...', timer);
+            cancelAnimationFrame(timer);
+        }
+    </script>
+</head>
+<body>
+    <a href="../"> &lt;-- Back to home page</a><br/>
+    <h1>Animation:</h1>
+    <button id="buttonReset" onClick="reset()">Reset</button><br/>
+    <button id="buttonAnimateProgress" onClick="drawProgress()">Animate Progress</button><br/>
+
+    <canvas id="myCanvas" width="400" height="100" style="border:1px solid #000000;"></canvas>
+
+
+
+</body>
+</html>
